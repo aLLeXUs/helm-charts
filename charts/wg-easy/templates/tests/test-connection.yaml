@@ -11,5 +11,5 @@ spec:
     - name: wget
       image: busybox
       command: ['wget']
-      args: ['{{ include "wg-easy.fullname" . }}:{{ .Values.service.port }}']
+      args: ['{{ include "wg-easy.fullname" . }}:{{ .Values.service.http.port }}']
   restartPolicy: Never

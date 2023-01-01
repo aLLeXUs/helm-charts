@@ -5,10 +5,10 @@
 replicaCount: 1
 
 image:
-  repository: nginx
+  repository: weejewel/wg-easy
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: ""
+  tag: "7"
 
 imagePullSecrets: []
 nameOverride: ""
@@ -25,20 +25,27 @@ serviceAccount:
 
 podAnnotations: {}
 
-podSecurityContext: {}
-  # fsGroup: 2000
+podSecurityContext:
+  runAsUser: 0
+  runAsGroup: 0
 
-securityContext: {}
-  # capabilities:
-  #   drop:
-  #   - ALL
-  # readOnlyRootFilesystem: true
-  # runAsNonRoot: true
-  # runAsUser: 1000
+securityContext:
+  readOnlyRootFilesystem: false
+  runAsNonRoot: false
+  capabilities:
+    add:
+      - NET_ADMIN
+      - SYS_MODULE
 
 service:
-  type: ClusterIP
-  port: 80
+  http:
+    type: ClusterIP
+    port: 51821
+    targetPort: 51821
+  vpn:
+    type: LoadBalancer
+    port: 51820
+    targetPort: 51820
 
 ingress:
   enabled: false
@@ -80,3 +87,19 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+secretEnv:
+  PASSWORD: "secretpass"
+
+env:
+  WG_HOST: "localhost"
+
+persistence:
+  config:
+    enabled: true
+    annotations: {}
+    accessMode: ReadWriteOnce
+    size: 1Gi
+    storageClass:
+    existingClaim:
+    mountPath: "/etc/wireguard"

@@ -60,3 +60,21 @@ Create the name of the service account to use
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
 {{- end }}
+
+{{/*
+List environment variables for the deployment
+*/}}
+{{- define "wg-easy.listEnvVariables"}}
+{{- $name := include "wg-easy.fullname" . }}
+{{- range $key, $val := .Values.env }}
+- name: {{ $key }}
+  value: {{ quote $val }}
+{{- end }}
+{{- range $key, $val := .Values.secretEnv }}
+- name: {{ $key }}
+  valueFrom:
+    secretKeyRef:
+      name: {{ $name }}
+      key: {{ $key }}
+{{- end }}
+{{- end }}
