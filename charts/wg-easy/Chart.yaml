@@ -2,10 +2,10 @@ apiVersion: v2
 name: wg-easy
 description: The easiest way to run WireGuard VPN + Web-based Admin UI
 type: application
-version: 0.2.0
+version: 0.2.1
 kubeVersion: ">=1.22.0-0"
 appVersion: "14"
 dependencies:
   - name: common
     repository: https://bjw-s.github.io/helm-charts
-    version: 3.6.1
+    version: 3.7.0
