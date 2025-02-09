@@ -3,6 +3,21 @@ entries:
   wg-easy:
   - apiVersion: v2
     appVersion: "14"
+    created: "2025-02-09T16:34:37.069191741Z"
+    dependencies:
+    - name: common
+      repository: https://bjw-s.github.io/helm-charts
+      version: 3.7.0
+    description: The easiest way to run WireGuard VPN + Web-based Admin UI
+    digest: 9d83d25b271fab73a9cb4401a749c32a4114a615e73fe5b5a933ef56301630e7
+    kubeVersion: '>=1.22.0-0'
+    name: wg-easy
+    type: application
+    urls:
+    - https://github.com/aLLeXUs/helm-charts/releases/download/wg-easy-0.2.1/wg-easy-0.2.1.tgz
+    version: 0.2.1
+  - apiVersion: v2
+    appVersion: "14"
     created: "2025-01-26T22:48:31.880925788Z"
     dependencies:
     - name: common
@@ -46,4 +61,4 @@ entries:
     urls:
     - https://github.com/aLLeXUs/helm-charts/releases/download/wg-easy-0.1.1/wg-easy-0.1.1.tgz
     version: 0.1.1
-generated: "2025-01-26T22:48:31.880948099Z"
+generated: "2025-02-09T16:34:37.069214203Z"
